@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DanQing</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      menu {
+        display: flex;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <menu>
+      <button id="select">Select</button>
+      <button id="pencil">Pencil</button>
+      <button id="easer">Easer</button>
+      <button id="undo">Undo</button>
+      <button id="redo">redo</button>
+    </menu>
+    <canvas id="board" style="width: 800px; height: 800px" />
+
+    <script type="module">
+      import {
+        createDrawingBoard,
+        historyPlugin,
+        moveBoardPlugin,
+        zoomBoardPlugin,
+        drawingPlugin,
+      } from './src/danqing.ts'
+
+      const drawingBoard = createDrawingBoard()
+      const board = document.getElementById('board')
+      drawingBoard.init(board)
+      drawingBoard.getCanvas().backgroundColor = '#000'
+
+      drawingBoard
+        .use(historyPlugin)
+        .use(moveBoardPlugin)
+        .use(zoomBoardPlugin)
+        .use(drawingPlugin)
+        .setMode('Pencil')
+
+      document.querySelector('#select').addEventListener('click', () => {
+        drawingBoard.setMode('Default')
+      })
+      document.querySelector('#pencil').addEventListener('click', () => {
+        drawingBoard.setMode('Pencil')
+      })
+      document.querySelector('#easer').addEventListener('click', () => {
+        drawingBoard.setMode('Easer')
+      })
+      document.querySelector('#undo').addEventListener('click', () => {
+        drawingBoard.undo()
+      })
+      document.querySelector('#redo').addEventListener('click', () => {
+        drawingBoard.redo()
+      })
+    </script>
+  </body>
+</html>

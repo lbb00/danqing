@@ -1,0 +1,38 @@
+{
+  "name": "danqing",
+  "version": "0.0.1",
+  "description": "Build a simple drawing board by Fabirc.js v6.",
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite dev"
+  },
+  "author": "lbb00",
+  "license": "UNLICENSE (HTTP://UNLICENSE.ORG/)",
+  "dependencies": {
+    "@erase2d/fabric": "^1.1.6",
+    "es-toolkit": "^1.13.1",
+    "fabric": "^6.0.2",
+    "terser": "^5.31.3",
+    "vite": "^5.3.5",
+    "vite-plugin-dts": "4.0.0-beta.1"
+  }
+}
